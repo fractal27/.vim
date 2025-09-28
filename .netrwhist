@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/home/anon/Personal/repos/calcola-netto'
+let g:netrw_dirhist_0='/home/anon/Personal/Pictures'
+let g:netrw_dirhist_9='/home/anon/Personal'
+let g:netrw_dirhist_8='/home/anon/notes'
+let g:netrw_dirhist_7='/home/anon/suckless-fw/surf'
+let g:netrw_dirhist_6='/home/anon/notes'
+let g:netrw_dirhist_5='/home/anon/notes/diary'
+let g:netrw_dirhist_4='/home/anon/notes'
+let g:netrw_dirhist_3='/home/anon/suckless-fw/surf/defaults/styles'
+let g:netrw_dirhist_2='/home/anon/suckless-fw/surf/defaults'

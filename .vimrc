@@ -14,13 +14,20 @@ call vimail#begin()
 
 """ FILETYPE SPECIFIC STUFF
 filetype on
+"
+" vimwiki
+"
+let g:vimwiki_list = [{ 'syntax': 'markdown', 
+                      \ 'ext': 'md',
+		      \ 'path': '~/notes'}]
+
 
 
 """ LSP 
 
 
-map <C-K> :!python3 /usr/share/clang/clang-format-19/clang-format.py<cr>
-imap <C-K> <c-o>:!python3 /usr/share/clang/clang-format-19/clang-format.py<cr>
+" map <C-K> :!python3 /usr/share/clang/clang-format-19/clang-format.py<cr>
+" imap <C-K> <c-o>:!python3 /usr/share/clang/clang-format-19/clang-format.py<cr>
 
 
 if executable('clangd')
@@ -45,17 +52,19 @@ nmap gd :LspDefinition<CR>
 nmap <C-d> :LspRename<CR>
 
 
-
+map <leader> ,
 
 "" default mappings
 map <F1> <Esc>:e./Makefile<CR>
 map <F2> <Esc>:!make<CR>
 map <C-s> <Esc>:wq<CR>
 map <C-c> <Esc>:q!<CR>
-map <C-q> <Esc>:tabclose<CR>
-map <C-e> <Esc>:tabnew<CR>
-map <C-a> <Esc>:tabnext<CR>
-"map <C-a> <Esc>:set wrap<CR>
+map <leader>q <Esc>:tabclose<CR>
+map <leader>e <Esc>:tabnew<CR>
+map <leader>d <Esc>:tabnext<CR>
+map <leader>a <Esc>:tabprev<CR>
+map <F9> <Esc>:!surf <C-r>"<CR><CR>
+map <C-a> <Esc>:set wrap<CR>
 nmap <Tab> i<C-n>
 imap <S-Tab> <C-n>
 
@@ -101,7 +110,8 @@ fun! Start()
     " When we go to insert mode start a new buffer, and start insert
     nnoremap <buffer><silent> e :enew<CR>
     nnoremap <buffer><silent> i :enew <bar> startinsert<CR>
-    nnoremap <buffer><silent> o :call CtrlP()<CR>
+    nnoremap <buffer><silent> o :CtrlP<CR>
+    nnoremap <buffer><silent> c :e ~/.vimrc<CR>
 endfun
 
 " Run after "doing all the startup stuff"

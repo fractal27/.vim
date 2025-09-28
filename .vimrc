@@ -6,7 +6,6 @@ Plug 'rose-pine/vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'kien/ctrlp.vim'
-Plug 'airline/vim-airline'
 
 call plug#end()
 
@@ -22,25 +21,6 @@ let g:vimwiki_list = [{ 'syntax': 'markdown',
                       \ 'ext': 'md',
 		      \ 'path': '~/notes'}]
 
-
-
-"
-" airline
-"
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-let g:airline_symbols.maxlinenr = '(lines)'
-let g:airline_symbols.dirty='⚡'
 
 
 """ LSP 
@@ -133,7 +113,6 @@ fun! Start()
     nnoremap <buffer><silent> o :CtrlP<CR>
     nnoremap <buffer><silent> c :e ~/.vimrc<CR>
 endfun
-
 
 " Run after "doing all the startup stuff"
 autocmd VimEnter * call Start()

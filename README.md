@@ -5,7 +5,7 @@
 you just need to clone this, into the `~/.vim` directory with;
 
 ```sh
-$ cp ~/.vim ~/.vim.old ## do this if you want to preserve, and maybe recuper your old configuration
+$ cp ~/.vim ~/.vim.old ## do this if you want to preserve, and maybe recover your old configuration in the future
 $ git clone https://github.com/fractal/.vim ~/.vim
 $ ./install.sh
 ```

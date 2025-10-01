@@ -8,8 +8,8 @@
       ||         ||                 
       |'---------'|                   e -> new file
        `)__ ____('                    i -> new file(insert mode)
-       [=== -- o ]--.                 o -> fuzzy find
-     __'---------'__ \                c -> modify .vimrc
-jgs [::::::::::: :::] )
-     `""'"""""'""""`/T\
+       [=== -- o ]--.                 c -> modify .vimrc
+     __'---------'__ \                p -> project menu
+jgs [::::::::::: :::] )               q -> Quit.
+     `""'"""""'""""`/T\               
                     \_/

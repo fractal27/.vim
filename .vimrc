@@ -3,11 +3,9 @@
 call plug#begin()
 
 " Plug 'Timoses/vim-venu'
-Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'rose-pine/vim'
 Plug 'dstein64/vim-menu'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/async-lsp.vim'
+"Plug 'prabirshrestha/async-lsp.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'vim-airline/vim-airline'
@@ -155,10 +153,22 @@ augroup lsp_install
 		autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
+" custom syntax
 
-nmap <C-d> :LspRename<CR>
+"fun! s:load_cust_syntax()
+"	" syn match note_to_self "//\s*\<NTS\>"
+"	syn match note_to_self "//\s*\zs\<NTS\>"
+"    hi note_to_self gui=NONE guifg=#B5A1FF
+"endfun
+"
+"augroup custom_syntax
+"	autocmd!
+"	autocmd Syntax * call s:load_cust_syntax()
+"augroup end
+
 
 "" default mappings
+
 map , <leader>
 
 map  <F1> <Esc>:e./Makefile<CR>
@@ -202,6 +212,8 @@ fun! EnvSetup()
 				let l:entrypoint = 'main.c*'
 		elseif l:project_type == 'c_cmake'
 				let l:entrypoint = 'main.c*'
+		elseif l:project_type == 'python'
+				let l:entrypoint = '__main__.py'
 		else
 				let l:entrypoint = '.'
 		endif
@@ -218,13 +230,15 @@ fun! UserInput(prompt)
 endfun
 
 fun! Makeproj(project_type)
-		if a:project_type != "c_makefile" && a:project_type != "c_cmake" && a:project_type != "python"
+		if a:project_type != "c_automake" && a:project_type != "c_makefile" && a:project_type != "c_cmake" && a:project_type != "python"
 				echoerr 'Project type not found:'.a:type
 				return
 		endif
 
 		let l:project_name = UserInput('project name: ')
 		exec '!mkdir '..g:project_directory..'/'..l:project_name
+		exec 'cd '..g:project_directory..'/'..l:project_name
+		exec '!echo '.a:project_type.'.project_type'
 
 		if a:project_type == 'c_makefile'
 				let l:entrypoint = 'main.c'
@@ -233,7 +247,7 @@ fun! Makeproj(project_type)
 		elseif a:project_type == 'python'
 				let l:entrypoint = '__main__.py'
 		endif
-		exec 'open '..g:project_directory..'/'..l:project_name..'/'..l:entrypoint
+		exec 'e '.l:entrypoint
 		startinsert
 endfun
 
@@ -243,14 +257,15 @@ fun! ProjectMenu()
 		aunmenu *
 
 		exec 'noremenu &New.&c-makefile <Esc>:call Makeproj("c_makefile")'
+		exec 'noremenu &New.&c-automake <Esc>:call Makeproj("c_automake")'
 		exec 'noremenu &New.&c-cmake    <Esc>:call Makeproj("c_cmake")'
 		exec 'noremenu &New.&python     <Esc>:call Makeproj("python")'
 
 		for project in split(system('ls --color=never -1 '.g:project_directory),'\n')
-				let l:enviroment_setup = '&'."'".project."'".'.&Enviroment'
-				let l:build_menu = '&'."'".project."'".'.&Build'
-				let l:reinstall_menu = '&'."'".project."'".'.&Reinstall'
-				let l:project_path = g:project_directory.'/'.project
+				let l:enviroment_setup	= '&'.."'".l:project."'.&Enviroment"
+				let l:build_menu 		= '&'.."'".l:project."'.&Build"
+				let l:reinstall_menu	= '&'.."'".l:project."'.&Reinstall"
+				let l:project_path		= g:project_directory.'/'.project
 				" noremenu &Project.&Build :echo<cr>
 				" noremenu &Project.&Reinstall :echo<cr>
 				exec 'noremenu '.l:enviroment_setup.' <Esc>:cd '..l:project_path..'<CR>:call EnvSetup()<CR><CR>'
@@ -302,17 +317,23 @@ fun! Start()
 endfun
 
 " Run after "doing all the startup stuff"
+
 autocmd VimEnter * call Start()
+autocmd Syntax * runtime! after/syntax/common.vim
 
 
 
 
 ""appearence/settings
 
+
 set nowrap
-set tabstop=4
 set nu
 set ignorecase
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=0 noexpandtab
 
 colorscheme rosepine
 syntax on

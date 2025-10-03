@@ -307,6 +307,7 @@ fun! Start()
 
     " No modifications to this buffer
     setlocal nomodifiable nomodified
+	setlocal filetype=start_buffer
 
     " When we go to insert mode start a new buffer, and start insert
     nnoremap <buffer><silent> e :enew<CR>

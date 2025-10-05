@@ -6,10 +6,10 @@
       ||         ||                 ===============
       ||         ||					Start Typing... 
       ||         ||                 
-      |'---------'|                   e -> new file
-       `)__ ____('                    i -> new file(insert mode)
-       [=== -- o ]--.                 c -> modify .vimrc
-     __'---------'__ \                p -> project menu
-jgs [::::::::::: :::] )               q -> Quit.
+      |'---------'|                   e -> `new file`
+       `)__ ____('                    i -> `new file(insert mode)`
+       [=== -- o ]--.                 c -> `modify .vimrc`
+     __'---------'__ \                p -> `project menu`
+jgs [::::::::::: :::] )               q -> `Quit.`
      `""'"""""'""""`/T\               
                     \_/

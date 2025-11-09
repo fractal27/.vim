@@ -2,18 +2,16 @@
 
 call plug#begin()
 
-" Plug 'Timoses/vim-venu'
-Plug 'rose-pine/vim'
-Plug 'dstein64/vim-menu'
-"Plug 'prabirshrestha/async-lsp.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'vim-airline/vim-airline'
+	Plug 'rose-pine/vim'			" 284K	rosepine
+	Plug 'prabirshrestha/vim-lsp'	" 1.5M	vim-lsp
+	Plug 'dstein64/vim-menu'		" 2.4M	vim-menu
+	Plug 'tribela/vim-transparent'	" 144K	vim-transparent
+	Plug 'vimwiki/vimwiki'			" 6.7M	vimwiki
 
 call plug#end()
 
-
-call vimail#begin()
+" this doesn't work for now(or I don't know how to get it to work)
+" call vimail#begin()
 
 "" Global configuration
 
@@ -22,7 +20,9 @@ let g:project_directory = '~/Personal/repos'
 
 """ FILETYPE SPECIFIC STUFF
 filetype on
-"
+au BufNewFile,BufRead *.nimble set filetype=nim
+au BufWritePost *.go exec '!go build'
+
 " vimwiki
 "
 let g:vimwiki_list = [{ 'syntax': 'markdown', 
@@ -108,21 +108,21 @@ let g:airline_section_d = '%{exec set ft}'
 "    augroup end
 "endif
 "
-"if executable('clangd')
-"    augroup lsp_clangd
-"        autocmd!
-"        autocmd User lsp_setup call lsp#register_server({
-"                    \ 'name': 'clangd',
-"                    \ 'cmd': {server_info->['clangd']},
-"                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-"                    \ })
-"        autocmd FileType c setlocal omnifunc=lsp#complete
-"        autocmd FileType cpp setlocal omnifunc=lsp#complete
-"        autocmd FileType objc setlocal omnifunc=lsp#complete
-"        autocmd FileType objcpp setlocal omnifunc=lsp#complete
-"		" autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
-"    augroup end
-"endif
+if executable('clangd')
+    augroup lsp_clangd
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'clangd',
+                    \ 'cmd': {server_info->['clangd']},
+                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+                    \ })
+        autocmd FileType c setlocal omnifunc=lsp#complete
+        autocmd FileType cpp setlocal omnifunc=lsp#complete
+        autocmd FileType objc setlocal omnifunc=lsp#complete
+        autocmd FileType objcpp setlocal omnifunc=lsp#complete
+		" autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
+    augroup end
+endif
 
 
 
@@ -314,6 +314,8 @@ fun! Start()
     nnoremap <buffer><silent> i :enew <bar> startinsert<CR>
     nnoremap <buffer><silent> c :e ~/.vimrc<CR>
     nnoremap <buffer><silent> p :call ProjectMenu()<CR>
+    nnoremap <buffer><silent> d :VimwikiDiaryIndex<CR>
+    nnoremap <buffer><silent> w :VimwikiIndex<CR>
     nnoremap <buffer><silent> q :q<CR>
 endfun
 
@@ -335,6 +337,7 @@ set ignorecase
 set tabstop=4
 set shiftwidth=4
 set softtabstop=0 noexpandtab
+
 
 colorscheme rosepine
 syntax on

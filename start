@@ -1,15 +1,15 @@
 
 
 
-       ___________
-      |.---------.|
-      ||         ||                 ===============
-      ||         ||					Start Typing... 
-      ||         ||                 
-      |'---------'|                   e -> `new file`
-       `)__ ____('                    i -> `new file(insert mode)`
-       [=== -- o ]--.                 c -> `modify .vimrc`
-     __'---------'__ \                p -> `project menu`
-jgs [::::::::::: :::] )               q -> `Quit.`
-     `""'"""""'""""`/T\               
+       ____________
+      |.----------.|         
+      ||          ||         Start Typing...                       
+      ||          ||			                              		
+      ||          ||           [ e ] -> `new file`                     
+      |'----------'|           [ i ] -> `new file(insert mode)`        
+       `)__ _____('            [ c ] -> `modify .vimrc`                
+       [=== -- o  ]--.         [ p ] -> `project menu`                 
+     __'---------'__ \         [ d ] -> `vimwiki d. index`
+jgs [::::::::::: :::] )        [ w ] -> `vimwiki index`
+     `""'"""""'""""`/T\        [ q ] -> `Quit.`                              
                     \_/

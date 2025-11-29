@@ -7,10 +7,11 @@ call plug#begin()
 	Plug 'dstein64/vim-menu'		" 2.4M	vim-menu
 	Plug 'tribela/vim-transparent'	" 144K	vim-transparent
 	Plug 'vimwiki/vimwiki'			" 6.7M	vimwiki
+	" Tot 10.8M
 
 call plug#end()
 
-" this doesn't work for now(or I don't know how to get it to work)
+" this doesn't work for now(probably I don't know how to get it to work)
 " call vimail#begin()
 
 "" Global configuration
@@ -337,7 +338,7 @@ set ignorecase
 set tabstop=4
 set shiftwidth=4
 set softtabstop=0 noexpandtab
-
+set modeline
 
 colorscheme rosepine
 syntax on

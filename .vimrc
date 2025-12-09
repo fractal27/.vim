@@ -2,12 +2,12 @@
 
 call plug#begin()
 
+	Plug 'tpope/vim-fugitive'		" 284K	rosepineb
 	Plug 'rose-pine/vim'			" 284K	rosepine
 	Plug 'prabirshrestha/vim-lsp'	" 1.5M	vim-lsp
 	Plug 'dstein64/vim-menu'		" 2.4M	vim-menu
-	Plug 'tribela/vim-transparent'	" 144K	vim-transparent
 	Plug 'vimwiki/vimwiki'			" 6.7M	vimwiki
-	" Tot 10.8M
+	"Tot 10.8M
 
 call plug#end()
 
@@ -21,7 +21,7 @@ let g:project_directory = '~/Personal/repos'
 
 """ FILETYPE SPECIFIC STUFF
 filetype on
-au BufNewFile,BufRead *.nimble set filetype=nim
+"au BufNewFile,BufRead *.nimble set filetype=nim
 au BufWritePost *.go exec '!go build'
 
 " vimwiki
@@ -38,19 +38,6 @@ let g:vimwiki_list = [{ 'syntax': 'markdown',
 if !exists('g:airline_symbols')
 		let g:airline_symbols = {}
 endif
-
-" unicode symbols
-" let g:airline_left_sep = '»'
-" let g:airline_left_sep = '▶'
-" let g:airline_right_sep = '«'
-" let g:airline_right_sep = '◀'
-" let g:airline_symbols.colnr = ' (col)'
-" let g:airline_symbols.crypt = '🔒'
-" let g:airline_symbols.executable = '⚙'
-" let g:airline_symbols.linenr = '(line)'
-" let g:airline_symbols.linenr = '¶'
-" let g:airline_symbols.maxlinenr = ''
-" let g:airline_symbols.maxlinenr = '(max)'
 
 " powerline symbols
 let g:airline_left_sep = ''
@@ -77,18 +64,6 @@ let g:airline_section_b = '%{getcwd()}'
 let g:airline_section_c = '%t'
 let g:airline_section_d = '%{exec set ft}'
 
-
-" old vim-powerline symbols
-" let g:airline_left_sep = '⮀'
-" let g:airline_left_alt_sep = '⮁'
-" let g:airline_right_sep = '⮂'
-" let g:airline_right_alt_sep = '⮃'
-" let g:airline_symbols.branch = '⭠'
-" let g:airline_symbols.readonly = '⭤'
-" let g:airline_symbols.linenr = '⭡'
-
-
-
 """ LSP 
 
 
@@ -101,11 +76,8 @@ let g:airline_section_d = '%{exec set ft}'
 "                    \ 'cmd': {server_info->['pyright']},
 "                    \ 'whitelist': ['python'],
 "                    \ })
-"        autocmd FileType c setlocal omnifunc=lsp#complete
-"        autocmd FileType cpp setlocal omnifunc=lsp#complete
-"        autocmd FileType objc setlocal omnifunc=lsp#complete
-"        autocmd FileType objcpp setlocal omnifunc=lsp#complete
-"		" autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
+"        autocmd FileType python setlocal omnifunc=lsp#complete
+"		" autocmd BufWritePre *.py *.pyi call Formatonsave()
 "    augroup end
 "endif
 "
@@ -154,20 +126,6 @@ augroup lsp_install
 		autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-" custom syntax
-
-"fun! s:load_cust_syntax()
-"	" syn match note_to_self "//\s*\<NTS\>"
-"	syn match note_to_self "//\s*\zs\<NTS\>"
-"    hi note_to_self gui=NONE guifg=#B5A1FF
-"endfun
-"
-"augroup custom_syntax
-"	autocmd!
-"	autocmd Syntax * call s:load_cust_syntax()
-"augroup end
-
-
 "" default mappings
 
 map , <leader>
@@ -183,14 +141,19 @@ map  <leader>e <Esc>:tabnew<CR>
 map  <leader>d <Esc>:tabnext<CR>
 map  <leader>a <Esc>:tabprev<CR>
 
+
 nmap <F9> <Esc>:!surf <C-r>"<CR><CR>
 vmap <F9> y<Esc>:!surf <C-r>"<CR><CR>
 imap <F9> yiw<Esc>:!surf <C-r>"<CR><CR>
 
-map  <C-a> <Esc>==
+map  <Leader>g <Esc>==
+nmap <Leader>g q:avimgrep //ij **/* | copen<Esc>5ba
+imap <Leader>g <Esc><C-g>
+vmap <Leader>g <Esc><C-g>
+cmap <Leader>g vimgrep //ij **/* | copen<C-Left><C-Left><C-Left><C-Left><C-Left><Right>
 
-nmap <Tab> i<C-n>
-imap <S-Tab> <C-n>
+
+
 for char_to_wrap in ['"',"'","`"]
 		" wrap combinations
 		" ,w" to wrap the selection or the word selected in \"double quotes"
@@ -339,6 +302,6 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=0 noexpandtab
 set modeline
-
+set hlsearch
 colorscheme rosepine
 syntax on

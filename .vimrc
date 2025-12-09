@@ -128,30 +128,30 @@ augroup END
 
 "" default mappings
 
-map , <leader>
+noremap , <leader>
 
-map  <F1> <Esc>:e./Makefile<CR>
-map  <F2> <Esc>:!make<CR>
-map  <C-s> <Esc>:wq<CR>
-map  <C-c> <Esc>:q!<CR>
-
-
-map  <leader>q <Esc>:"tabclose"<CR>
-map  <leader>e <Esc>:tabnew<CR>
-map  <leader>d <Esc>:tabnext<CR>
-map  <leader>a <Esc>:tabprev<CR>
+noremap  <F1> <Esc>:e./Makefile<CR>
+noremap  <F2> <Esc>:!make<CR>
+noremap  <C-s> <Esc>:wq<CR>
+noremap  <C-c> <Esc>:q!<CR>
 
 
-nmap <F9> <Esc>:!surf <C-r>"<CR><CR>
-vmap <F9> y<Esc>:!surf <C-r>"<CR><CR>
-imap <F9> yiw<Esc>:!surf <C-r>"<CR><CR>
+noremap  <leader>q <Esc>:tabclose<CR>
+noremap  <leader>n <Esc>:tabnew<CR>
+noremap  <leader>f <Esc>:tabnext<CR>
+noremap  <leader>d <Esc>:tabprev<CR>
 
-map  <Leader>g <Esc>==
-nmap <Leader>g q:avimgrep //ij **/* | copen<Esc>5ba
-imap <Leader>g <Esc><C-g>
-vmap <Leader>g <Esc><C-g>
-cmap <Leader>g vimgrep //ij **/* | copen<C-Left><C-Left><C-Left><C-Left><C-Left><Right>
+noremap  <leader>g <Esc>==
+nnoremap <leader>g q:avimgrep //ij **/* | copen<Esc>5ba
+inoremap <leader>g <Esc><C-g>
+vnoremap <leader>g <Esc><C-g>
+cnoremap <leader>g vimgrep //ij **/* | copen<C-Left><C-Left><C-Left><C-Left><C-Left><Right>
 
+noremap <leader>i <Esc>:Git
+
+nnoremap <F9> <Esc>:!surf <C-r>"<CR><CR>
+vnoremap <F9> y<Esc>:!surf <C-r>"<CR><CR>
+inoremap <F9> yiw<Esc>:!surf <C-r>"<CR><CR>
 
 
 for char_to_wrap in ['"',"'","`"]

@@ -280,6 +280,7 @@ fun! Start()
     nnoremap <buffer><silent> p :call ProjectMenu()<CR>
     nnoremap <buffer><silent> d :VimwikiDiaryIndex<CR>
     nnoremap <buffer><silent> w :VimwikiIndex<CR>
+    nnoremap <buffer><silent> g :tab Git<CR>
     nnoremap <buffer><silent> q :q<CR>
 endfun
 

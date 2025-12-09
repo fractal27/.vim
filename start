@@ -6,7 +6,7 @@
       ||          ||         Start Typing...                       
       ||          ||			                              		
       ||          ||           [ e ] -> `new file`                     
-      |'----------'|           [ i ] -> `new file(insert mode)`        
+      |'----------'|           [ g ] -> `git mode`
        `)__ _____('            [ c ] -> `modify .vimrc`                
        [=== -- o  ]--.         [ p ] -> `project menu`                 
      __'---------'__ \         [ d ] -> `vimwiki d. index`

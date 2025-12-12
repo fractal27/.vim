@@ -1,7 +1,6 @@
 """ PLUGINS
 
 call plug#begin()
-
 	Plug 'tpope/vim-fugitive'		" 284K	rosepineb
 	Plug 'rose-pine/vim'			" 284K	rosepine
 	Plug 'prabirshrestha/vim-lsp'	" 1.5M	vim-lsp
@@ -13,7 +12,7 @@ call plug#end()
 
 " this doesn't work for now(probably I don't know how to get it to work)
 " call vimail#begin()
-
+"
 "" Global configuration
 
 let g:project_directory = '~/Personal/repos'
@@ -128,7 +127,7 @@ augroup END
 
 "" default mappings
 
-noremap , <leader>
+map , <leader>
 
 noremap  <F1> <Esc>:e./Makefile<CR>
 noremap  <F2> <Esc>:!make<CR>
@@ -137,9 +136,13 @@ noremap  <C-c> <Esc>:q!<CR>
 
 
 noremap  <leader>q <Esc>:tabclose<CR>
-noremap  <leader>n <Esc>:tabnew<CR>
+noremap  <leader>e <Esc>:tabnew<CR>
 noremap  <leader>f <Esc>:tabnext<CR>
 noremap  <leader>d <Esc>:tabprev<CR>
+nnoremap <C-k> :m-2==<CR>
+nnoremap <C-j> :m+1==<CR>
+vnoremap <C-k> :m-2==<CR>
+vnoremap <C-j> :m+1==<CR>
 
 noremap  <leader>g <Esc>==
 nnoremap <leader>g q:avimgrep //ij **/* | copen<Esc>5ba

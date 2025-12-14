@@ -1,6 +1,8 @@
 """ PLUGINS
 
 call plug#begin()
+	Plug 'tribela/vim-transparent'
+	Plug 'tpope/vim-fugitive'		" 284K	rosepineb
 	Plug 'tpope/vim-fugitive'		" 284K	rosepineb
 	Plug 'rose-pine/vim'			" 284K	rosepine
 	Plug 'prabirshrestha/vim-lsp'	" 1.5M	vim-lsp
@@ -83,16 +85,30 @@ let g:airline_section_d = '%{exec set ft}'
 if executable('clangd')
     augroup lsp_clangd
         autocmd!
-        autocmd User lsp_setup call lsp#register_server({
+        autocmd user lsp_setup call lsp#register_server({
                     \ 'name': 'clangd',
                     \ 'cmd': {server_info->['clangd']},
                     \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
                     \ })
-        autocmd FileType c setlocal omnifunc=lsp#complete
-        autocmd FileType cpp setlocal omnifunc=lsp#complete
-        autocmd FileType objc setlocal omnifunc=lsp#complete
-        autocmd FileType objcpp setlocal omnifunc=lsp#complete
-		" autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
+        autocmd filetype c setlocal omnifunc=lsp#complete
+        autocmd filetype cpp setlocal omnifunc=lsp#complete
+        autocmd filetype objc setlocal omnifunc=lsp#complete
+        autocmd filetype objcpp setlocal omnifunc=lsp#complete
+		" autocmd bufwritepre *.h,*.cc,*.cpp call formatonsave()
+    augroup end
+endif
+
+if executable('gopls')
+    augroup lsp_gopls
+        autocmd!
+        autocmd user lsp_setup call lsp#register_server({
+                    \ 'name': 'gopls',
+                    \ 'cmd': {server_info->['gopls']},
+                    \ 'whitelist': ['go','mod'],
+                    \ })
+        autocmd filetype go setlocal omnifunc=lsp#complete
+        autocmd filetype mod setlocal omnifunc=lsp#complete
+		" autocmd bufwritepre *.h,*.cc,*.cpp call formatonsave()
     augroup end
 endif
 
@@ -139,18 +155,39 @@ noremap  <leader>q <Esc>:tabclose<CR>
 noremap  <leader>e <Esc>:tabnew<CR>
 noremap  <leader>f <Esc>:tabnext<CR>
 noremap  <leader>d <Esc>:tabprev<CR>
+
 nnoremap <C-k> :m-2==<CR>
 nnoremap <C-j> :m+1==<CR>
 vnoremap <C-k> :m-2==<CR>
 vnoremap <C-j> :m+1==<CR>
 
-noremap  <leader>g <Esc>==
-nnoremap <leader>g q:avimgrep //ij **/* | copen<Esc>5ba
-inoremap <leader>g <Esc><C-g>
-vnoremap <leader>g <Esc><C-g>
-cnoremap <leader>g vimgrep //ij **/* | copen<C-Left><C-Left><C-Left><C-Left><C-Left><Right>
+function! QuickInput(prompt) abort
+	let s:si=&t_SI|let s:ei=&t_EI|set t_SI= t_EI=
+	let s:gc=&guicursor|if has('gui_running')|set guicursor=n-v-c:block-Cursor,i:none|endif
+	let r= input(a:prompt)
+	let &t_SI=s:si|let &t_EI=s:ei|let &guicursor=s:gc
+	return r
+endfunction
 
-noremap <leader>i <Esc>:Git
+func! VimGrepExec() 
+	let l:choices = [
+				\ '**/*',
+				\ '`find . -type f ! -executable`',
+				\ '**/*.html',
+				\ '**/*.[ch]',
+				\ '**/*.c']
+	let l:filter = QuickInput("Quickfix filter:")
+	let l:fileglob = inputlist(l:choices)
+	exec 'vimgrep /'..l:filter..'/ij '..l:choices[l:fileglob]..' | copen'
+endfun!
+
+nnoremap <leader>gz q:avimgrep //ij **/* | copen<Esc>5ba
+noremap <leader>gg <Esc>:call VimGrepExec()<CR>
+
+nnoremap <leader>f :call QuickFilter()<CR>
+inoremap <C-f> <Esc><leader>f
+
+noremap <leader>h <Esc>:Git<CR>
 
 nnoremap <F9> <Esc>:!surf <C-r>"<CR><CR>
 vnoremap <F9> y<Esc>:!surf <C-r>"<CR><CR>
@@ -296,7 +333,6 @@ autocmd Syntax * runtime! after/syntax/common.vim
 
 
 ""appearence/settings
-
 
 set nowrap
 set nu

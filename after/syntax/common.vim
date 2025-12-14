@@ -14,6 +14,5 @@ augroup custom_syntax
 	autocmd!
 	autocmd Syntax * syn match note_to_self
 	autocmd Syntax * syn match Todo
-	hi! Normal ctermbg=NONE guibg=NONE
 augroup END
 

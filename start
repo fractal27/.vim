@@ -4,14 +4,14 @@
        M|@||@) M|            
        @,----.JM|            Start Typing...                       
       JS^\__/  qKL      		                              		
-     dZP        qKRb           [ e ] -> `new file`                     
-    dZP          qKKb          [ g ] -> `git mode`
-   fZP            SMMb         [ c ] -> `modify .vimrc`                
-   HZM            MMMM         [ p ] -> `project menu`                 
-   FqM            MMMM         [ d ] -> `vimwiki d. index`
- __| ".        |\dS"qML        [ w ] -> `vimwiki index`
- |    `.       | `' \Zq        [ q ] -> `Quit.`                              
-_)      \.___.,|     .'
-\____   )MMMMMP|   .'
+     dZP        qKRb           [ e ]  -> `New file`                     
+    dZP          qKKb          [ g ]  -> `Git mode`
+   fZP            SMMb         [ c ]  -> `Modify .vimrc`                
+   HZM            MMMM         [ sf ] -> `Search file`                
+   FqM            MMMM         [ sc ] -> `Search contents`                
+ __| ".        |\dS"qML        [ p ]  -> `Project menu`                 
+ |    `.       | `' \Zq        [ d ]  -> `Vimwiki d. index`
+_)      \.___.,|     .'        [ w ]  -> `Vimwiki index`
+\____   )MMMMMP|   .'          [ q ]  -> `Quit.`                              
      `-'       `--' hjm
 

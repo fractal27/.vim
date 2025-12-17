@@ -1,8 +1,11 @@
 """ PLUGINS
 
 call plug#begin()
+
+	Plug 'fracpete/vim-large-files'
+	Plug 'junegunn/fzf'
+	Plug 'junegunn/fzf.vim'
 	Plug 'tribela/vim-transparent'
-	Plug 'tpope/vim-fugitive'		" 284K	rosepineb
 	Plug 'tpope/vim-fugitive'		" 284K	rosepineb
 	Plug 'rose-pine/vim'			" 284K	rosepine
 	Plug 'prabirshrestha/vim-lsp'	" 1.5M	vim-lsp
@@ -153,13 +156,16 @@ noremap  <C-c> <Esc>:q!<CR>
 
 noremap  <leader>q <Esc>:tabclose<CR>
 noremap  <leader>e <Esc>:tabnew<CR>
-noremap  <leader>f <Esc>:tabnext<CR>
-noremap  <leader>d <Esc>:tabprev<CR>
+noremap  <leader>n <Esc>:tabnext<CR>
+noremap  <leader>p <Esc>:tabprev<CR>
 
 nnoremap <C-k> :m-2==<CR>
 nnoremap <C-j> :m+1==<CR>
 vnoremap <C-k> :m-2==<CR>
 vnoremap <C-j> :m+1==<CR>
+
+map <leader>f <Esc>:Files<CR>
+nmap <leader>c :Rg<CR>
 
 function! QuickInput(prompt) abort
 	let s:si=&t_SI|let s:ei=&t_EI|set t_SI= t_EI=
@@ -184,7 +190,7 @@ endfun!
 nnoremap <leader>gz q:avimgrep //ij **/* | copen<Esc>5ba
 noremap <leader>gg <Esc>:call VimGrepExec()<CR>
 
-nnoremap <leader>f :call QuickFilter()<CR>
+" nnoremap <leader>f :call VimGrepExec()<CR>
 inoremap <C-f> <Esc><leader>f
 
 noremap <leader>h <Esc>:Git<CR>
@@ -315,8 +321,9 @@ fun! Start()
 
     " When we go to insert mode start a new buffer, and start insert
     nnoremap <buffer><silent> e :enew<CR>
-    nnoremap <buffer><silent> i :enew <bar> startinsert<CR>
     nnoremap <buffer><silent> c :e ~/.vimrc<CR>
+    nnoremap <buffer><silent> sf :Files<CR>
+    nnoremap <buffer><silent> sc :Rg<CR>
     nnoremap <buffer><silent> p :call ProjectMenu()<CR>
     nnoremap <buffer><silent> d :VimwikiDiaryIndex<CR>
     nnoremap <buffer><silent> w :VimwikiIndex<CR>

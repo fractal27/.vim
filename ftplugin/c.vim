@@ -11,4 +11,9 @@ imap  <leader>v <Esc>^3x<C-o>i
 vmap  <leader>v :norm ^3x<CR>
 nmap  <leader>v ^3x<C-o>
 
+func! Make()
+		let out = system(g:make_command)
+endfunction!
+
+" autocmd BufWritePre *.c call Make()
 

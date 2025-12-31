@@ -9,9 +9,9 @@
    fZP            SMMb         [ c ]  -> `Modify .vimrc`                
    HZM            MMMM         [ sf ] -> `Search file`                
    FqM            MMMM         [ sc ] -> `Search contents`                
- __| ".        |\dS"qML        [ p ]  -> `Project menu`                 
- |    `.       | `' \Zq        [ d ]  -> `Vimwiki d. index`
-_)      \.___.,|     .'        [ w ]  -> `Vimwiki index`
-\____   )MMMMMP|   .'          [ q ]  -> `Quit.`                              
-     `-'       `--' hjm
+ __| ".        |\dS"qML        [ h ]  -> `File history`
+ |    `.       | `' \Zq        [ p ]  -> `Project menu`                 
+_)      \.___.,|     .'        [ w ]  -> `Vimwiki index`  
+\____   )MMMMMP|   .'          [ d ]  -> `Vimwiki d. index`
+     `-'       `--' hjm		   [ q ]  -> `Quit.`                              
 

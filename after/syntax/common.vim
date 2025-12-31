@@ -7,7 +7,7 @@ hi Todo ctermfg=NONE guifg=NONE ctermbg=Red guibg=#FF0000
 
 
 syn match note_to_self  /\<NTS\>/			   contains=@NoSpell	containedin=.*Comment.*
-syn match Todo 			/\v<(TODO|FIXME|NOTE)/ containedin=Comment
+syn match Todo 			/\v<(TODO|FIXME|NOTE|BUG)/ containedin=Comment
 
 " Apply to all filetypes
 augroup custom_syntax
